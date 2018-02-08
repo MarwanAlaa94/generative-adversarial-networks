@@ -22,6 +22,7 @@ track progress and see sample images in TensorBoard.
 import tensorflow as tf
 import datetime
 import matplotlib
+%matplotlib inline
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
