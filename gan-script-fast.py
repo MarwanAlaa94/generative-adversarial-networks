@@ -155,13 +155,13 @@ writer = tf.summary.FileWriter(logdir, sess.graph)
 sess.run(tf.global_variables_initializer())
 
 # Pre-train discriminator
-for i in range():
+for i in range(300):
     real_image_batch = mnist.train.next_batch(batch_size)[0].reshape([batch_size, 28, 28, 1])
     _, __ = sess.run([d_trainer_real, d_trainer_fake],
                                            {x_placeholder: real_image_batch})
 
 # Train generator and discriminator together
-for i in range(300):
+for i in range(1000000):
     print(i)
     real_image_batch = mnist.train.next_batch(batch_size)[0].reshape([batch_size, 28, 28, 1])
     print(images_for_tensorboard)
