@@ -178,7 +178,7 @@ for i in range(1):
             plt.axis('off')
             plt.imshow(generated_image[j], cmap="gray")
             plt.subplots_adjust(wspace=0.5)
-        plt.savefig('test'+str(i)+'.jpg')
+        plt.savefig('test'+str(i)+'.png')
         plt.show()
     # Train generator
     _ = sess.run(g_trainer)
