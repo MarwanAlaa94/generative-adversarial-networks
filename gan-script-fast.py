@@ -21,8 +21,6 @@ track progress and see sample images in TensorBoard.
 
 import tensorflow as tf
 import datetime
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 # Load MNIST data
@@ -157,14 +155,13 @@ writer = tf.summary.FileWriter(logdir, sess.graph)
 sess.run(tf.global_variables_initializer())
 
 # Pre-train discriminator
-for i in range(100):
-    print(i)
+for i in range():
     real_image_batch = mnist.train.next_batch(batch_size)[0].reshape([batch_size, 28, 28, 1])
     _, __ = sess.run([d_trainer_real, d_trainer_fake],
                                            {x_placeholder: real_image_batch})
 
 # Train generator and discriminator together
-for i in range(100000):
+for i in range(300):
     print(i)
     real_image_batch = mnist.train.next_batch(batch_size)[0].reshape([batch_size, 28, 28, 1])
     print(images_for_tensorboard)
@@ -172,13 +169,14 @@ for i in range(100000):
     _, __, generated_image = sess.run([d_trainer_real, d_trainer_fake,images_for_tensorboard],
                                            {x_placeholder: real_image_batch})
     generated_image = generated_image.reshape([50, 28, 28])
-    if(i % 1000 == 0 or (i < 100 and i%10 == 0) ):
+    if(i % 100 == 0 ):
+        print(i)
         for j in range(25):
             plt.subplot(5,5, (j+1))
             plt.axis('off')
             plt.imshow(generated_image[j], cmap="gray")
             plt.subplots_adjust(wspace=0.5)
-        plt.show()
+        plt.savefig('test'+str(i)+'.jpg')
     # Train generator
     _ = sess.run(g_trainer)
 
